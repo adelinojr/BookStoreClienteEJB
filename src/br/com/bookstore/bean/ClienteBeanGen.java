@@ -2,64 +2,66 @@ package br.com.bookstore.bean;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import br.com.bookstore.cliente.GenrenciadorCliente;
 import br.com.bookstore.cliente.Usuario;
 import br.com.bookstore.exceptions.ClienteException;
+import br.com.bookstore.integracao.ClienteDao;
 
 @Stateless
 @Remote(ClienteBeanModel.class)
 public class ClienteBeanGen implements ClienteBeanModel {
 
- private GenrenciadorCliente gem;
-	 
+	@EJB(name="BookStoreLivroEJB/ClienteDAOImp",beanInterface=ClienteDao.class)
+	private ClienteDao em;
+ 
+ 
 	 public ClienteBeanGen(){
-		 gem = new GenrenciadorCliente();
 	 }
 	 
 	@Override
 	public void cadastrarCliente(Usuario cliente) throws ClienteException {
 
-		gem.persist(cliente);
+		em.insertCliente(cliente);
 		
 	}
 
 	@Override
 	public void editarCliente(Usuario cliente) throws ClienteException {
 		
-		gem.edit(cliente);
+		em.updateCliente(cliente);
 		
 	}
 
 	@Override
 	public List<Usuario> listarClientes() {
 		// TODO Auto-generated method stub
-		return gem.getTodosOsClientes();
+		return em.searchClientes();
 	}
 
 	@Override
 	public List<String> obterCidades(String estado) {
 		// TODO Auto-generated method stub
-		return gem.getCidades(estado);
+		return em.searchCidades(estado);
 	}
 
 	@Override
-	public Usuario obterCliente(String cpf) {
+	public Usuario obterCliente(String cpf) throws ClienteException {
 		// TODO Auto-generated method stub
-		return null;
+		return em.searchCliente(cpf);
 	}
 
 	@Override
 	public List<String> obterTodosOsEstados() {
 		// TODO Auto-generated method stub
-		return gem.getTodosOsEstados();
+		return em.searchTodosOsEstados();
 	}
 
 	@Override
 	public void removerCliente(Usuario cliente) throws ClienteException {
-		// TODO Auto-generated method stub
+		em.deleteCliente(cliente);
 		
 	}
 

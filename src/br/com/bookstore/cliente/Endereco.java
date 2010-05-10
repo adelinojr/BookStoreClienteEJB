@@ -2,6 +2,8 @@ package br.com.bookstore.cliente;
 
 import java.io.Serializable;
 
+import javax.persistence.Embeddable;
+
 
 /**
  * Informações sobre o endereço de um usuário.
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author Adelino Ferreira - bugass@gmail.com
  */
 
+@Embeddable
 public class Endereco implements Serializable {
 
 

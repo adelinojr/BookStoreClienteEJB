@@ -10,6 +10,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +28,9 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	
 	@Enumerated(EnumType.STRING)
 	private Perfil perfil;
 	
@@ -38,7 +42,7 @@ public class Usuario implements Serializable {
 	
 	@Embedded
     @AttributeOverrides({
-        @AttributeOverride(name="descCpf", column=@Column(name="CPF"))}
+        @AttributeOverride(name="descCpf", column=@Column(name="descCpf"))}
     )
 	private CpfCliente cpf;
 	
@@ -56,6 +60,18 @@ public class Usuario implements Serializable {
 	@Column(nullable=false)
 	private String senha;
 	
+	
+	@Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name="logradouro", column=@Column(name="logradouro")),
+        @AttributeOverride(name="numero", column=@Column(name="numero")),
+        @AttributeOverride(name="complemento", column=@Column(name="complemento")),
+        @AttributeOverride(name="bairro", column=@Column(name="bairro")),
+        @AttributeOverride(name="cidade", column=@Column(name="cidade")),
+        @AttributeOverride(name="estado", column=@Column(name="estado")),
+        @AttributeOverride(name="cep", column=@Column(name="cep"))
+    	}
+    )	
 	private Endereco endereco;
 
 	public Usuario(){
@@ -142,11 +158,11 @@ public class Usuario implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 

@@ -26,7 +26,9 @@ public class CpfCliente implements Serializable {
 		
 	}
 
-	
+	public CpfCliente (String descCpf){
+		this.descCpf = descCpf;
+	}	
 	
 	public CpfCliente(String i, String divitoVerificador) {
 		super();

@@ -62,7 +62,7 @@ public interface ClienteBeanModel {
 	 * @return o cliente cujo CPF foi passado como parâmetro, ou null, caso não exista cliente cadastrado
 	 * 			com o CPF em questão.
 	 */
-	public Usuario obterCliente( String cpf ); 
+	public Usuario obterCliente( String cpf ) throws ClienteException ; 
 	
 	/**
 	 * Obtém uma lista com todos os estados reconhecidos pela aplicação.
