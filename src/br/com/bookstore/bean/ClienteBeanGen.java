@@ -3,7 +3,7 @@ package br.com.bookstore.bean;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 import br.com.bookstore.cliente.Usuario;
@@ -11,7 +11,7 @@ import br.com.bookstore.exceptions.ClienteException;
 import br.com.bookstore.integracao.ClienteDao;
 
 @Stateless
-@Remote(ClienteBeanModel.class)
+@Local(ClienteBeanModel.class)
 public class ClienteBeanGen implements ClienteBeanModel {
 
 	@EJB(name="BookStoreLivroEJB/ClienteDAOImp",beanInterface=ClienteDao.class)
