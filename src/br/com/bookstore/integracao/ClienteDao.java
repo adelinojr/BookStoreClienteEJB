@@ -3,7 +3,6 @@ package br.com.bookstore.integracao;
 import java.util.List;
 
 import br.com.bookstore.cliente.Usuario;
-import br.com.bookstore.exceptions.ClienteException;
 
 public interface ClienteDao {
 
