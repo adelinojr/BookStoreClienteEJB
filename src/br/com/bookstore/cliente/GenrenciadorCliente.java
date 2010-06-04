@@ -75,4 +75,10 @@ public class GenrenciadorCliente implements Serializable {
 		cidadesPorEstado.put("Rio Grande do Norte", cidadesDoRioGrandeDoNorte);
 	}
 
+	public Boolean VerificaPerfil(Usuario cli){
+		if ( cli.getPerfil() == Perfil.Cliente){
+			return true;
+		}
+		return false;
+	}	
 }

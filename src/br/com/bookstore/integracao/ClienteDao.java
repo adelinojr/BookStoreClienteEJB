@@ -17,7 +17,7 @@ public interface ClienteDao {
 	 * @throws ClienteException Caso o cliente a ser cadastrado já exista na base de dados, possua alguma
 	 * 							informação inválida, ou esteja com o perfil de administrador configurado.
 	 */
-	public void insertCliente( Usuario cliente ) throws ClienteException;
+	public void insertCliente( Usuario cliente );
 	
 	/**
 	 * Exclui um cliente da base de dados da aplicação. Não deve ser possível, via aplicação,
@@ -25,8 +25,9 @@ public interface ClienteDao {
 	 * 
 	 * @param cliente O cliente a ser removido
 	 * @throws ClienteException Caso o cliente a ser removido não exista, ou possua o perfil de administrador.
+	 * @throws Exception 
 	 */
-	public void deleteCliente( Usuario cliente ) throws ClienteException;
+	public void deleteCliente( Usuario cliente ) throws Exception;
 	
 	/**
 	 * Permite modificar as informações cadastrais de um cliente. Não deve ser possível alterar o CPF
@@ -37,7 +38,7 @@ public interface ClienteDao {
 	 * @throws ClienteException Caso existam restrições nos dados fornecidos através do novo objeto passado
 	 * 							como parâmetro ou o cliente a ser modificado não exista nas bases de dados.
 	 */
-	public void updateCliente( Usuario cliente ) throws ClienteException;
+	public void updateCliente( Usuario cliente );
 	
 	/**
 	 * Obtém uma lista com todos os clientes cadastrados na aplicação. Esta lista não deve conter usuários
@@ -55,20 +56,10 @@ public interface ClienteDao {
 	 * @param cpf o CPF usado para recuperar o cliente específico.
 	 * @return o cliente cujo CPF foi passado como parâmetro, ou null, caso não exista cliente cadastrado
 	 * 			com o CPF em questão.
+	 * @throws Exception 
 	 */
-	public Usuario searchCliente( String cpf ) throws ClienteException; 
+	public Usuario searchCliente( String cpf ) throws Exception; 
 	
-	/**
-	 * Obtém uma lista com todos os estados reconhecidos pela aplicação.
-	 * @return Uma lista com os estados em formato String.
-	 */
-	public List<String> searchTodosOsEstados();
-	
-	/**
-	 * Obtém todas as cidades referentes ao estado passado como parâmetro.
-	 * @param estado o estado para o qual estamos procurando a cidade.
-	 * @return O conjunto de cidades referentes ao estado, ou uma lista vazia, 
-	 * 			caso não haja cidades cadastradas.
-	 */
-	public List<String> searchCidades( String estado );
+	public Usuario serachClienteId(Integer id );
+
 }
